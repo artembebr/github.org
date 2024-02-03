@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программа Paint</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        #canvas {
+            border: 1px solid black;
+            background-color: white;
+        }
+        .color-button {
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .color-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .line-width-button {
+            background-color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .line-width-button:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white;">Программа Paint</h1>
+    <canvas id="canvas" width="600" height="400"></canvas><br>
+    <button onclick="setColor('black')" class="color-button" style="background-color: black;">Black</button>
+    <button onclick="setColor('red')" class="color-button" style="background-color: red;">Red</button>
+    <button onclick="setColor('blue')" class="color-button" style="background-color: blue;">Blue</button>
+    <button onclick="setColor('green')" class="color-button" style="background-color: green;">Green</button>
+    <button onclick="setColor('yellow')" class="color-button" style="background-color: yellow;">Yellow</button>
+    <button onclick="setColor('orange')" class="color-button" style="background-color: orange;">Orange</button>
+    <button onclick="setColor('purple')" class="color-button" style="background-color: purple;">Purple</button>
+    <button onclick="setColor('cyan')" class="color-button" style="background-color: cyan;">Cyan</button>
+    <button onclick="setColor('magenta')" class="color-button" style="background-color: magenta;">Magenta</button>
+    <button onclick="setColor('gray')" class="color-button" style="background-color: gray;">Gray</button>
+    <button onclick="setColor('brown')" class="color-button" style="background-color: brown;">Brown</button>
+    <button onclick="setColor('lime')" class="color-button" style="background-color: lime;">Lime</button>
+    <button onclick="setColor('maroon')" class="color-button" style="background-color: maroon;">Maroon</button>
+    <button onclick="setColor('navy')" class="color-button" style="background-color: navy;">Navy</button>
+    <button onclick="setColor('pink')" class="color-button" style="background-color: pink;">Pink</button>
+    <button onclick="setColor('olive')" class="color-button" style="background-color: olive;">Olive</button>
+    <button onclick="setColor('teal')" class="color-button" style="background-color: teal;">Teal</button>
+    <button onclick="setColor('indigo')" class="color-button" style="background-color: indigo;">Indigo</button>
+    <button onclick="setColor('silver')" class="color-button" style="background-color: silver;">Silver</button>
+    <button onclick="setColor('gold')" class="color-button" style="background-color: gold;">Gold</button>
+    <button onclick="setColor('violet')" class="color-button" style="background-color: violet;">Violet</button>
+    <button onclick="setColor('coral')" class="color-button" style="background-color: coral;">Coral</button>
+    <button onclick="setColor('skyblue')" class="color-button" style="background-color: skyblue;">Sky Blue</button>
+    <button onclick="setColor('orchid')" class="color-button" style="background-color: orchid;">Orchid</button>
+    <button onclick="setColor('aquamarine')" class="color-button" style="background-color: aquamarine;">Aquamarine</button>
+    <button onclick="setColor('sienna')" class="color-button" style="background-color: sienna;">Sienna</button>
+    <br>
+    <button onclick="setLineWidth(1)" class="line-width-button">1</button>
+    <button onclick="setLineWidth(2)" class="line-width-button">2</button>
+    <button onclick="setLineWidth(3)" class="line-width-button">3</button>
+    <button onclick="setLineWidth(4)" class="line-width-button">4</button>
+    <button onclick="setLineWidth(5)" class="line-width-button">5</button>
+    <button onclick="setLineWidth(6)" class="line-width-button">6</button>
+    <button onclick="setLineWidth(7)" class="line-width-button">7</button>
+    <button onclick="setLineWidth(8)" class="line-width-button">8</button>
+    <button onclick="setLineWidth(9)" class="line-width-button">9</button>
+    <button onclick="setLineWidth(10)" class="line-width-button">10</button>
+    <button onclick="setErase()" class="color-button" style="background-color: white;">Erase</button>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var isDrawing = false;
+
+        function setColor(color) {
+            ctx.strokeStyle = color;
+        }
+
+        function setLineWidth(width) {
+            ctx.lineWidth = width;
+        }
+
+        function setErase() {
+            ctx.strokeStyle = 'white'; // затирка
+        }
+
+        canvas.addEventListener('mousedown', function(e) {
+            isDrawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            if (isDrawing) {
+                ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            isDrawing = false;
+        });
+    </script>
+</body>
+</html>
